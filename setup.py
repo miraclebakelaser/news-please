@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name="news-please",
@@ -39,7 +39,6 @@ news-please is an open source, easy-to-use news crawler that extracts structured
         "hjson>=1.5.8",
         "elasticsearch>=2.4",
         "beautifulsoup4>=4.3.2",
-        "readability-lxml>=0.6.2",
         "langdetect>=1.0.7",
         "python-dateutil>=2.4.0",
         "plac>=0.9.6",

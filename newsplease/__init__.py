@@ -9,11 +9,12 @@ from six.moves import urllib
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
-from newsplease.pipeline.extractor import article_extractor
-from newsplease.crawler.items import NewscrawlerItem
 from dotmap import DotMap
-from newsplease.pipeline.pipelines import ExtractedInformationStorage
+
+from newsplease.crawler.items import NewscrawlerItem
 from newsplease.crawler.simple_crawler import SimpleCrawler
+from newsplease.pipeline.extractor import article_extractor
+from newsplease.pipeline.pipelines import ExtractedInformationStorage
 
 
 class EmptyResponseError(ValueError):
@@ -36,9 +37,7 @@ class NewsPlease:
         encoding = None
         try:
             encoding = (
-                warc_record.http_headers.get_header("Content-Type")
-                .split(";")[1]
-                .split("=")[1]
+                warc_record.http_headers.get_header("Content-Type").split(";")[1].split("=")[1]
             )
         except:
             pass
@@ -83,7 +82,7 @@ class NewsPlease:
                 if fetch_images
                 else [("newspaper_extractor_no_images", "NewspaperExtractorNoImages")]
             )
-            + ["readability_extractor", "date_extractor", "lang_detect_extractor"]
+            + ["date_extractor", "lang_detect_extractor"]
         )
 
         title_encoded = "".encode()
